@@ -43,15 +43,13 @@ public class RequestBuilder {
         return  requestSpecification.post(path);
     }
 
-    public static Response deleteRequest(String baseUrl, String path, Integer id) {
+    public static Response deleteRequest(String baseUrl, String path) {
         RequestSpecification requestSpecification = RestAssured.given()
                 .baseUri(baseUrl)
-                .basePath(path)
                 .header(HttpHeaders.CONTENT_TYPE, ContentType.APPLICATION_JSON.getMimeType())
                 .filter(new RequestLoggingFilter())
-                .filter(new ResponseLoggingFilter())
-                .pathParams("id", id);
+                .filter(new ResponseLoggingFilter());
 
-        return  requestSpecification.delete("/{id}");
+        return  requestSpecification.delete(path);
     }
 }
