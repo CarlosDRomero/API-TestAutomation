@@ -93,4 +93,10 @@ public class UserTests extends TestRunner {
 
         Assert.assertEquals(res.getStatusCode(), 200);
     }
+    @Test(testName = "Se puede hacer un logout")
+    public void logout() {
+        // En este caso el logout no pide ningun parametro entonces es tan simple como comprobar el estado 200, al menos con esta API.
+        Response res = RequestBuilder.getRequest(getBaseUrl(), "/user/logout");
+        Assert.assertEquals(res.getStatusCode(), 200);
+    }
 }
