@@ -11,6 +11,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+// Esta clase permite definir la información tanto para crear como para obtener usuarios
+// Ya que la API acepta exactamente los mismos campos en ambos sentidos
 public class User {
     private int  id;
     @JsonProperty(value = "username")

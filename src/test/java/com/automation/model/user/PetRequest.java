@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+// Define los campos necesarios para crear mascotas
 public class PetRequest {
     private String name;
     private String status;

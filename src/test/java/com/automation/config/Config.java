@@ -11,6 +11,7 @@ public class Config {
 
     public static void loadProperties() {
         try {
+            // La idea de esta condición es que cada vez que se llame a esta función se evite volver a leer el archivo si ya fue cargado
             if (PROPERTIES.isEmpty()) {
                 System.out.println("Loading properties file...");
                 FileInputStream fileInputStream = new FileInputStream(PROPERTIES_FILE);
@@ -21,6 +22,7 @@ public class Config {
         }
     }
     public static String getProperty(String propertyName) {
+        // La idea es asegurarse de que las configuraciones están cargadas antes de intentar acceder a alguna propiedad del archivo
         loadProperties();
         return PROPERTIES.getProperty(propertyName);
     }

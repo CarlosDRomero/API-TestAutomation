@@ -11,6 +11,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
+// Define los campos de información de las ordenes de compra de mascotas
+// (realmente la API define más campos pero no los consideré necesarios para los ejercicios propuestos)
 public class OrderResponse {
     private long id;
     private long petId;

@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+// Define los campos necesarios para crear ordenes de compra de mascotas
 public class OrderRequest {
     private long petId;
     private int quantity;
