@@ -1,15 +1,8 @@
 package com.automation.tests;
 
-import com.automation.config.Config;
-import lombok.Getter;
-import org.testng.annotations.BeforeSuite;
-
 public class TestRunner {
-    @Getter
-    private static String baseUrl;
-
-    @BeforeSuite
-    public void setUpEnvironment() {
-        baseUrl = Config.getProperty("url.base");
-    }
+    // Debido a las refactorizaciones que he hecho, esta clase quedó vacía
+    // y para los ejercicios solicitados es posible que se pueda eliminar
+    // Pero asumiendo la posibilidad de que los tests puedan tener más ekementos en común
+    // considero buena práctica mantener la clase común entre ellos.
 }
