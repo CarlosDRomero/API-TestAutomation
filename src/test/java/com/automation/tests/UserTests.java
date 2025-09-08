@@ -2,6 +2,7 @@ package com.automation.tests;
 
 import com.automation.model.user.User;
 import com.automation.request.RequestBuilder;
+import com.automation.request.UserRequests;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -23,21 +24,11 @@ public class UserTests extends TestRunner {
     @Test(testName = "Se puede crear un usuario con los campos correctos")
     public void correctUserCreation(){
         // Creación de usuario
-        User createUserRequest = User.builder()
-                .id(id)
-                .userName(userName)
-                .firstName(firstName)
-                .lastName(lastName)
-                .email(email)
-                .password(password)
-                .phone(phone)
-                .userStatus(userStatus)
-                .build();
         Response res;
-        res = RequestBuilder.postRequest(getBaseUrl(), "/user", createUserRequest);
+        res = UserRequests.createUser(id, userName, firstName, lastName, email, password, phone, userStatus);
         Assert.assertEquals(res.getStatusCode(), 200);
         // Validación de la creación del usuario
-        res = RequestBuilder.getRequest(getBaseUrl(), "/user/"+userName);
+        res = UserRequests.getUserByUserName(userName);
         Assert.assertEquals(res.getStatusCode(), 200);
         User user = res.as(User.class);
 
@@ -54,49 +45,25 @@ public class UserTests extends TestRunner {
     @Test(testName = "El sistema no debe dejar crear un usuario con datos en un formato incorrecto")
     public void userCreationFail(){
         // Creación de usuario
-        User createUserRequest = User.builder()
-                .id(id)
-                .userName(userName)
-                .firstName(firstName)
-                .lastName(lastName)
-                .email("esto no es un correo")
-                .password(password)
-                .phone(phone)
-                .userStatus(userStatus)
-                .build();
         Response res;
-        res = RequestBuilder.postRequest(getBaseUrl(), "/user", createUserRequest);
+        res = UserRequests.createUser(id, userName, firstName, lastName, "esto no es un correo", password, phone, userStatus);
         Assert.assertEquals(res.getStatusCode(), 400);
     }
     @Test(testName = "Se puede iniciar sesión con un usuario recién creado")
     public void createdUserLogin(){
         // Creación del usuario
-        User createUserRequest = User.builder()
-                .id(id)
-                .userName(userName)
-                .firstName(firstName)
-                .lastName(lastName)
-                .email(email)
-                .password(password)
-                .phone(phone)
-                .userStatus(userStatus)
-                .build();
         Response res;
-        res = RequestBuilder.postRequest(getBaseUrl(), "/user", createUserRequest);
+        res = UserRequests.createUser(id, userName, firstName, lastName, email, password, phone, userStatus);
         Assert.assertEquals(res.getStatusCode(), 200);
         // Login del usuario
-        Map<String, String> queryParams = new HashMap<>();
-        queryParams.put("username", userName);
-        queryParams.put("password", password);
-
-        res = RequestBuilder.getRequest(getBaseUrl(), "/user/login", queryParams);
+        res = UserRequests.loginUser(userName, password);
 
         Assert.assertEquals(res.getStatusCode(), 200);
     }
     @Test(testName = "Se puede hacer un logout")
     public void logout() {
         // En este caso el logout no pide ningun parametro entonces es tan simple como comprobar el estado 200, al menos con esta API.
-        Response res = RequestBuilder.getRequest(getBaseUrl(), "/user/logout");
+        Response res = UserRequests.logoutUser();
         Assert.assertEquals(res.getStatusCode(), 200);
     }
 }
