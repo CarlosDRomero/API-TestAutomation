@@ -1,14 +1,10 @@
 package com.automation.tests;
 
 import com.automation.model.user.User;
-import com.automation.request.RequestBuilder;
 import com.automation.request.UserRequests;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class UserTests extends TestRunner {
 

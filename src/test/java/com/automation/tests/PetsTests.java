@@ -1,9 +1,7 @@
 package com.automation.tests;
 
-import com.automation.model.user.PetRequest;
 import com.automation.model.user.PetResponse;
 import com.automation.request.PetRequests;
-import com.automation.request.RequestBuilder;
 import io.restassured.common.mapper.TypeRef;
 import io.restassured.response.Response;
 import org.testng.Assert;
@@ -12,9 +10,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class PetsTests extends TestRunner {
     private long petId;

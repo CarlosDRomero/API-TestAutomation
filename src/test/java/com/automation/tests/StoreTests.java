@@ -1,11 +1,8 @@
 package com.automation.tests;
 
-import com.automation.model.user.OrderRequest;
 import com.automation.model.user.OrderResponse;
-import com.automation.model.user.PetRequest;
 import com.automation.model.user.PetResponse;
 import com.automation.request.PetRequests;
-import com.automation.request.RequestBuilder;
 import com.automation.request.StoreRequests;
 import io.restassured.response.Response;
 import org.testng.Assert;
